@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/", methods = ['POST','GET'])
 def index():
-    return "<h1> PPT Translator API </h1>"
+    return "<h1> UiPath PPT Translator API </h1>"
 
 @app.route("/translate_via_postman", methods = ['POST','GET'])
 def translate_via_postman():
