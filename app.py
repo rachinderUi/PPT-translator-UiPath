@@ -1,6 +1,7 @@
 from charset_normalizer import from_path
 from flask import Flask, jsonify, request
 from translate import Translator
+import os
 
 app = Flask(__name__)
 
@@ -34,6 +35,7 @@ def translate_via_uipath():
     
 
 if __name__=='__main__':
-    app.run(debug=True)
+    port = os.environ.get("PORT",5000)
+    app.run(debug=False, host="0.0.0.0", port=port)
     
     
