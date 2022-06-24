@@ -2,8 +2,12 @@ from charset_normalizer import from_path
 from flask import Flask, jsonify, request
 from translate import Translator
 import os
+import flasgger
+from flasgger import Swagger
+
 
 app = Flask(__name__)
+Swagger(app=app)
 
 @app.route("/", methods = ['POST','GET'])
 def index():
@@ -23,6 +27,23 @@ def translate_via_postman():
     
 @app.route("/translate_via_uipath",methods=['POST','GET'])
 def translate_via_uipath():
+    """Translation via UiPath.
+    This is using docstrings for specifications
+    ---
+    parameters:
+        - name: to_lang
+          in: query
+          type: string
+          required: true
+        - name: input_string
+          in: query
+          type: string
+          required: true
+    responses:
+        200:
+             description: The output values
+        
+    """
     if request.method == 'POST' or request.method=='GET':
     ### Getting data
         to_lang = request.values.get("to_lang")
